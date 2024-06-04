@@ -11,5 +11,5 @@ const connectDB = async () => {
         // TODO: learn about process.exit(1) in nodeJS
     }
 }
-
+// asynchronous method returns promise on completion
 export default connectDB;

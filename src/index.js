@@ -13,9 +13,22 @@ dotenv.config({
 // 1. always try to wrap in try-catch
 // 2. databses is always in another continent always use async-await
 
-// 1st method : and use this only in future 
+// 1st method : and try to use only this in future 
 connectDB()
+.then(() => {
+    // app.on("error", (error) => {
+    //     console.log("ERROR: ", error);
+    //     throw error
+    // })
 
+    app.listen(process.env.PORT, () => {
+        console.log(`Server listening on PORT: ${process.env.PORT}`);
+    })
+})
+.catch((err) => {
+    console.log("MONGODB Connection Failed: ", err);
+})
+ 
 
 // 2nd method : bad practice
 /*
@@ -34,7 +47,7 @@ const app = express();
         })
 
         app.listen(process.env.PORT, () => {
-            console.log(`App listening on PORT: ${process.env.PORT}`);
+            console.log(`Server listening on PORT: ${process.env.PORT}`);
         })
          
     } catch (error) {

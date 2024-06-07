@@ -1,6 +1,6 @@
-import express from 'express'
-import cors from 'cors'
-import cookieParser from 'cookie-parser' 
+import express from "express"
+import cors from "cors"
+import cookieParser from "cookie-parser"
 
 const app = express()
 // middlewares and configuration settings --> app.use()
@@ -25,5 +25,18 @@ app.use(express.urlencoded({ /* to make sure that express understands data from 
 app.use(express.static("public")) // for storing files and folder inside our own server
 
 app.use(cookieParser()) // used for applying crud operations on users browser cookies
+
+
+// routes import 
+import userRouter from "./routes/user.routes.js"
+
+
+// routes declaration
+// previously we were using app.get() directly because routes and controllers are present in app.js itself but here 
+// to bring router we have to use middlewares so app.use() syntax 
+app.use("/api/v1/users", userRouter)
+// http://localhost:8000/api/v1/users/register
+
+
 
 export { app }
